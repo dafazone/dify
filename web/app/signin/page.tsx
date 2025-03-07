@@ -1,15 +1,17 @@
 'use client'
-import { useSearchParams } from 'next/navigation'
-import OneMoreStep from './oneMoreStep'
-import NormalForm from './normalForm'
+// import styles from './index.module.css'
+// import { useTranslation } from 'react-i18next'
+import LeftLoginPanel from './leftLoginPanel'
+import RightLoginPanel from './rightLoginPanel'
 
-const SignIn = () => {
-  const searchParams = useSearchParams()
-  const step = searchParams.get('step')
+export default function SignIn() {
+  // const { t } = useTranslation()
 
-  if (step === 'next')
-    return <OneMoreStep />
-  return <NormalForm />
+  return (
+    <>
+      <LeftLoginPanel />
+      <RightLoginPanel />
+      {/* <OneMoreStep /> */}
+    </>
+  )
 }
-
-export default SignIn
