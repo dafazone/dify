@@ -1,6 +1,6 @@
 'use client'
 import { IconMap } from '@/app/constants/llm'
-import { cn } from '@/app/lib/utils'
+import { cn } from '@/app/utils/utils'
 import Icon, { UserOutlined } from '@ant-design/icons'
 import type { IconComponentProps } from '@ant-design/icons/lib/components/Icon'
 import { Avatar } from 'antd'
@@ -23,6 +23,8 @@ catch (error) {
   console.warn(error)
   routeList = []
 }
+
+console.log('routeList', routeList)
 
 interface IProps extends IconComponentProps {
   name: string;
