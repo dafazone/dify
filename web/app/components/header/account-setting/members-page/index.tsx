@@ -56,7 +56,7 @@ const MembersPage = () => {
     <>
       <div className='flex flex-col'>
         <div className='flex items-center mb-4 p-3 pr-5 gap-3 bg-gradient-to-r from-background-gradient-bg-fill-chat-bg-2 to-background-gradient-bg-fill-chat-bg-1 rounded-xl border-t-[0.5px] border-l-[0.5px] border-divider-subtle'>
-          <LogoEmbeddedChatHeader className='!w-12 !h-12' />
+          <LogoEmbeddedChatHeader className='!w-6 !h-6' />
           <div className='grow'>
             <div className='system-md-semibold text-text-secondary'>{currentWorkspace?.name}</div>
             {enableBilling && (

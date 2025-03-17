@@ -427,9 +427,6 @@ const TextGeneration: FC<IMainProps> = ({
   useAppFavicon({
     enable: !isInstalledApp,
     icon_type: siteInfo?.icon_type,
-    icon: siteInfo?.icon,
-    icon_background: siteInfo?.icon_background,
-    icon_url: siteInfo?.icon_url,
   })
 
   const [isShowResultPanel, { setTrue: doShowResultPanel, setFalse: hideResultPanel }] = useBoolean(false)

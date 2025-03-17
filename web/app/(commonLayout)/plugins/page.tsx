@@ -14,7 +14,7 @@ const PluginList = async () => {
 }
 
 export const metadata = {
-  title: 'Plugins - Dify',
+  title: 'Plugins - 破界',
 }
 
 export default PluginList

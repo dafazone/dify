@@ -120,7 +120,7 @@ export default function AppSelector({ isMobile }: IAppSelector) {
                       </div>}
                     </Menu.Item>
                   </div>
-                  <div className='p-1'>
+                  {/* <div className='p-1'>
                     <Menu.Item>
                       {({ active }) => <Link
                         className={classNames(itemClassName, 'group justify-between',
@@ -137,8 +137,8 @@ export default function AppSelector({ isMobile }: IAppSelector) {
                     </Menu.Item>
                     <Support />
                     {IS_CLOUD_EDITION && isCurrentWorkspaceOwner && <Compliance />}
-                  </div>
-                  <div className='p-1'>
+                  </div> */}
+                  {/* <div className='p-1'>
                     <Menu.Item>
                       {({ active }) => <Link
                         className={classNames(itemClassName, 'group justify-between',
@@ -182,7 +182,7 @@ export default function AppSelector({ isMobile }: IAppSelector) {
                         </Menu.Item>
                       )
                     }
-                  </div>
+                  </div> */}
                   <Menu.Item>
                     {({ active }) => <div className='p-1' onClick={() => handleLogout()}>
                       <div

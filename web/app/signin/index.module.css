@@ -10,8 +10,8 @@
   height: calc(100vh - 10px);
   border-radius: 10px;
   margin: 5px;
-  background-image: url("../../assets/logo-bg.png");
-  background-size: cover;
+  background-image: url("../../public/images/logo-bg.png");
+  background-size: 100% 100%;
   background-repeat: no-repeat;
   display: flex;
   align-items: center; /* 垂直居中 */
@@ -26,6 +26,11 @@
 
 .sytemTitle div:first-child {
   font-size: 40px;
+  font-weight: 500;
+}
+
+.sytemTitle div:first-child span:last-child {
+  padding-left: 10px;
 }
 
 .sytemTitle div:last-child {

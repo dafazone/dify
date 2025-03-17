@@ -5,7 +5,7 @@ const AppList = async () => {
 }
 
 export const metadata = {
-  title: 'Datasets - Dify',
+  title: 'Datasets - 破界',
 }
 
 export default AppList

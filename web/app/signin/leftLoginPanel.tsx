@@ -9,7 +9,10 @@ const LeftLoginPanel = () => {
     <>
       <div className={styles.leftContainer}>
         <div className={styles.sytemTitle}>
-          <div>{t('login.dify')}</div>
+          <div>
+            <span>{t('login.dify')}</span>
+            <span>{'Boundary'}</span>
+          </div>
           <div>{t('login.introduce')}</div>
           <div>{t('login.loginTip')}</div>
         </div>
