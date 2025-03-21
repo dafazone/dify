@@ -166,12 +166,12 @@ const Apps = ({
       'flex flex-col h-full border-l-[0.5px] border-divider-regular',
     )}>
 
-      <div className='shrink-0 pt-6 px-12'>
+      {/* <div className='shrink-0 pt-6 px-12'>
         <div className={`mb-1 ${s.textGradient} text-xl font-semibold`}>{t('explore.apps.title')}</div>
         <div className='text-text-tertiary text-sm'>{t('explore.apps.description')}</div>
-      </div>
+      </div> */}
 
-      <div className={cn(
+      {/* <div className={cn(
         'flex items-center justify-between mt-6 px-12',
       )}>
         <>
@@ -191,9 +191,9 @@ const Apps = ({
           onClear={() => handleKeywordsChange('')}
         />
 
-      </div>
+      </div> */}
 
-      <div className={cn(
+      {/* <div className={cn(
         'relative flex flex-1 pb-6 flex-col overflow-auto shrink-0 grow mt-4',
       )}>
         <nav
@@ -214,8 +214,8 @@ const Apps = ({
             />
           ))}
         </nav>
-      </div>
-      {isShowCreateModal && (
+      </div> */}
+      {/* {isShowCreateModal && (
         <CreateAppModal
           appIconType={currApp?.app.icon_type || 'emoji'}
           appIcon={currApp?.app.icon || ''}
@@ -227,7 +227,7 @@ const Apps = ({
           onConfirm={onCreate}
           onHide={() => setIsShowCreateModal(false)}
         />
-      )}
+      )} */}
     </div>
   )
 }

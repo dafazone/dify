@@ -93,7 +93,7 @@ const SideBar: FC<IExploreSideBarProps> = ({
   const pinnedAppsCount = installedApps.filter(({ is_pinned }) => is_pinned).length
   return (
     <div className='w-fit sm:w-[216px] shrink-0 pt-6 px-4 border-r border-divider-burn cursor-pointer'>
-      <div className={cn(isDiscoverySelected ? 'text-text-accent' : 'text-text-tertiary')}>
+      {/* <div className={cn(isDiscoverySelected ? 'text-text-accent' : 'text-text-tertiary')}>
         <Link
           href='/explore/apps'
           className={cn(isDiscoverySelected ? ' bg-components-main-nav-nav-button-bg-active' : 'font-medium hover:bg-state-base-hover',
@@ -103,7 +103,7 @@ const SideBar: FC<IExploreSideBarProps> = ({
           {isDiscoverySelected ? <SelectedDiscoveryIcon /> : <DiscoveryIcon />}
           {!isMobile && <div className='text-sm'>{t('explore.sidebar.discovery')}</div>}
         </Link>
-      </div>
+      </div> */}
       {installedApps.length > 0 && (
         <div className='mt-10'>
           <p className='pl-2 mobile:px-0 text-xs text-text-tertiary break-all font-medium uppercase'>{t('explore.sidebar.workspace')}</p>
