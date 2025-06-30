@@ -85,7 +85,7 @@ const OneMoreStep = () => {
           <div className="mb-5">
             <label className="my-2 flex items-center justify-between system-md-semibold text-text-secondary">
               {t('login.invitationCode')}
-              <Tooltip
+              {/* <Tooltip
                 popupContent={
                   <div className='w-[256px] text-xs font-medium'>
                     <div className='font-medium'>{t('login.sendUsMail')}</div>
@@ -97,7 +97,7 @@ const OneMoreStep = () => {
                 needsDelay
               >
                 <span className='cursor-pointer text-text-accent-secondary'>{t('login.dontHave')}</span>
-              </Tooltip>
+              </Tooltip> */}
             </label>
             <div className="mt-1">
               <Input

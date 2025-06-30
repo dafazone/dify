@@ -37,6 +37,8 @@ const RightLoginPanel = () => {
 
   const invite_token = decodeURIComponent(searchParams.get('invite_token') || '')
 
+  const emailInfo = decodeURIComponent(searchParams.get('email') || '')
+
   const languageOptions = [
     // { value: '中文' },
     // { value: 'English' }
@@ -66,7 +68,7 @@ const RightLoginPanel = () => {
     try {
       const params = await form.validateFields()
       const { password, confirmPassword, email } = params
-      if(title === 'register' && password !== confirmPassword) {
+      if (title === 'register' && password !== confirmPassword) {
         message.warning(t('registWarning'))
         return false
       }
@@ -77,6 +79,7 @@ const RightLoginPanel = () => {
         remember_me: true,
       }
       if (title === 'login') {
+        if(isInvite) loginData.invite_token = invite_token
         const res: any = await login({
           url: '/login',
           body: loginData,
@@ -93,7 +96,7 @@ const RightLoginPanel = () => {
         }
       }
     }
-    catch(errorInfo) {
+    catch (errorInfo) {
       console.log('Failed:', errorInfo)
     }
   }
@@ -107,12 +110,17 @@ const RightLoginPanel = () => {
   useEffect(() => {
     console.log('locale', locale)
     const findIndex = languageOptions.findIndex((item: any) => item.key === locale)
-    if(findIndex > -1) {
+    if (findIndex > -1) {
       const node = languageOptions[findIndex]
       setLanguageTitle(node.text)
       setLanguageIcon(node.iconName)
     }
   }, [locale])
+
+  useEffect(() => {
+    console.log('isInvite', isInvite, emailInfo)
+    if(isInvite) form.setFieldValue('email', emailInfo)
+  }, [isInvite])
 
   return (
     <>
@@ -145,12 +153,12 @@ const RightLoginPanel = () => {
             <div>{t('login.zhongding')}</div>
           </div>
           <div className={styles.loginTitle}>
-            <div>{title === 'login' ? t('login.userlogin') : t('login.register')}</div>
-            <span>
+            {isInvite ? <div>{t('login.joinTeam')}</div> : <div>{title === 'login' ? t('login.userlogin') : t('login.register')}</div>}
+            {isInvite ? <span>{t('login.joinDesc')}</span> : <span>
               {title === 'login'
                 ? t('login.loginDescription')
                 : t('login.registerDescription')}
-            </span>
+            </span>}
           </div>
           <Form
             form={form}
@@ -199,7 +207,7 @@ const RightLoginPanel = () => {
                 label={t('login.nicknameLabel')}
                 rules={[{ required: true, message: t('login.nicknamePlaceholder') }]}
               >
-                <Input size="large" placeholder={t('login.nicknamePlaceholder')} className={styles.loginInput} />
+                <Input size="large" placeholder={t('login.nicknamePlaceholder')} className={styles.loginInput} disabled={isInvite} />
               </Form.Item>
             )}
             <Form.Item
@@ -238,7 +246,7 @@ const RightLoginPanel = () => {
               //   loading={loading}
               className={styles.loginBtn}
             >
-              {title === 'login' ? t('login.login') : t('login.regist')}
+              {isInvite ? t('login.regist') : t('login.login')}
             </Button>
             <div className={styles.forgetTipPanel}>
               {title === 'login' && (

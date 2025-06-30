@@ -15,6 +15,8 @@ import I18n from '@/context/i18n'
 import { activateMember, invitationCheck } from '@/service/common'
 import Loading from '@/app/components/base/loading'
 import Toast from '@/app/components/base/toast'
+import cn from '@/utils/classnames'
+import style from '../page.module.css'
 
 export default function InviteSettingsPage() {
   const { t } = useTranslation()
@@ -79,76 +81,104 @@ export default function InviteSettingsPage() {
     </div>
   }
 
-  return <div className='flex flex-col gap-3'>
-    <div className='bg-background-default-dodge border border-components-panel-border-subtle shadow-lg inline-flex w-14 h-14 justify-center items-center rounded-2xl'>
-      <RiAccountCircleLine className='w-6 h-6 text-2xl text-text-accent-light-mode-only' />
-    </div>
-    <div className='pt-2 pb-4'>
-      <h2 className='title-4xl-semi-bold'>{t('login.setYourAccount')}</h2>
-    </div>
-    <form action=''>
+  return <div className={cn(
+    style.background,
+    'flex w-full min-h-screen',
+    'sm:p-4 lg:p-8',
+    'gap-x-20',
+    'justify-center lg:justify-start',
+  )}>
+    <div className={
+      cn(
+        'flex w-full flex-col bg-white shadow rounded-2xl shrink-0',
+        'space-between',
+      )
+    }>
+      {/* <Header /> */}
+      <div className={
+        cn(
+          'flex flex-col items-center w-full grow justify-center',
+          'px-6',
+          'md:px-[108px]',
+        )
+      }>
+        <div className='flex flex-col md:w-[400px]'></div>
+        <div className='flex flex-col gap-3'>
+          <div className='bg-background-default-dodge border border-components-panel-border-subtle shadow-lg inline-flex w-14 h-14 justify-center items-center rounded-2xl'>
+            <RiAccountCircleLine className='w-6 h-6 text-2xl text-text-accent-light-mode-only' />
+          </div>
+          <div className='pt-2 pb-4'>
+            <h2 className='title-4xl-semi-bold'>{t('login.setYourAccount')}</h2>
+          </div>
+          <form action=''>
 
-      <div className='mb-5'>
-        <label htmlFor="name" className="my-2 system-md-semibold">
-          {t('login.name')}
-        </label>
-        <div className="mt-1">
-          <Input
-            id="name"
-            type="text"
-            value={name}
-            onChange={e => setName(e.target.value)}
-            placeholder={t('login.namePlaceholder') || ''}
-          />
+            <div className='mb-5'>
+              <label htmlFor="name" className="my-2 system-md-semibold">
+                {t('login.name')}
+              </label>
+              <div className="mt-1">
+                <Input
+                  id="name"
+                  type="text"
+                  value={name}
+                  onChange={e => setName(e.target.value)}
+                  placeholder={t('login.namePlaceholder') || ''}
+                />
+              </div>
+            </div>
+            <div className='mb-5'>
+              <label htmlFor="name" className="my-2 system-md-semibold">
+                {t('login.interfaceLanguage')}
+              </label>
+              <div className="mt-1">
+                <SimpleSelect
+                  defaultValue={LanguagesSupported[0]}
+                  items={languages.filter(item => item.supported)}
+                  onSelect={(item) => {
+                    setLanguage(item.value as string)
+                  }}
+                />
+              </div>
+            </div>
+            {/* timezone */}
+            <div className='mb-5'>
+              <label htmlFor="timezone" className="system-md-semibold">
+                {t('login.timezone')}
+              </label>
+              <div className="mt-1">
+                <SimpleSelect
+                  defaultValue={timezone}
+                  items={timezones}
+                  onSelect={(item) => {
+                    setTimezone(item.value as string)
+                  }}
+                />
+              </div>
+            </div>
+            <div>
+              <Button
+                variant='primary'
+                className='w-full'
+                onClick={handleActivate}
+              >
+                {`${t('login.login')}`}
+              </Button>
+            </div>
+          </form>
+          <div className="block w-full mt-2 system-xs-regular">
+            {/* {t('login.license.tip')} */}
+            &nbsp;
+            {/* <Link
+              className='system-xs-medium text-text-accent-secondary'
+              target='_blank' rel='noopener noreferrer'
+              href={`https://docs.dify.ai/${language !== LanguagesSupported[1] ? 'user-agreement' : `v/${locale.toLowerCase()}/policies`}/open-source`}
+            >{t('login.license.link')}</Link> */}
+          </div>
         </div>
       </div>
-      <div className='mb-5'>
-        <label htmlFor="name" className="my-2 system-md-semibold">
-          {t('login.interfaceLanguage')}
-        </label>
-        <div className="mt-1">
-          <SimpleSelect
-            defaultValue={LanguagesSupported[0]}
-            items={languages.filter(item => item.supported)}
-            onSelect={(item) => {
-              setLanguage(item.value as string)
-            }}
-          />
-        </div>
-      </div>
-      {/* timezone */}
-      <div className='mb-5'>
-        <label htmlFor="timezone" className="system-md-semibold">
-          {t('login.timezone')}
-        </label>
-        <div className="mt-1">
-          <SimpleSelect
-            defaultValue={timezone}
-            items={timezones}
-            onSelect={(item) => {
-              setTimezone(item.value as string)
-            }}
-          />
-        </div>
-      </div>
-      <div>
-        <Button
-          variant='primary'
-          className='w-full'
-          onClick={handleActivate}
-        >
-          {`${t('login.join')} ${checkRes?.data?.workspace_name}`}
-        </Button>
-      </div>
-    </form>
-    <div className="block w-full mt-2 system-xs-regular">
-      {t('login.license.tip')}
-      &nbsp;
-      <Link
-        className='system-xs-medium text-text-accent-secondary'
-        target='_blank' rel='noopener noreferrer'
-        href={`https://docs.dify.ai/${language !== LanguagesSupported[1] ? 'user-agreement' : `v/${locale.toLowerCase()}/policies`}/open-source`}
-      >{t('login.license.link')}</Link>
+    </div>
+    <div className='px-8 py-6 system-xs-regular text-text-tertiary'>
+      {/* © {new Date().getFullYear()} LangGenius, Inc. All rights reserved. */}
     </div>
   </div>
 }

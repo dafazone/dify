@@ -137,6 +137,8 @@ const translation = {
   confirmPwLabel: '再次输入密码',
   confirmPwPlaceholder: '请再次输入密码信息',
   loginSuccessTip: '登录成功',
+  joinTeam: '加入团队',
+  joinDesc: '请首次填入密码以完成注册',
 }
 
 export default translation
