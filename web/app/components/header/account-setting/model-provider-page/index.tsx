@@ -34,6 +34,7 @@ import type { Plugin } from '@/app/components/plugins/types'
 import { MARKETPLACE_URL_PREFIX } from '@/config'
 import cn from '@/utils/classnames'
 import { getLocaleOnClient } from '@/i18n'
+import { useRenderI18nObject } from '@/hooks/use-i18n'
 
 type Props = {
   searchText: string
@@ -93,6 +94,8 @@ const ModelProviderPage = ({ searchText }: Props) => {
     return [filteredConfiguredProviders, filteredNotConfiguredProviders]
   }, [configuredProviders, debouncedSearchText, notConfiguredProviders])
 
+  const getValueFromI18nObject = useRenderI18nObject()
+
   const handleOpenModal = useModelModalHandler()
   const [collapse, setCollapse] = useState(false)
   const locale = getLocaleOnClient()
@@ -103,6 +106,8 @@ const ModelProviderPage = ({ searchText }: Props) => {
 
   const cardRender = useCallback((plugin: Plugin) => {
     if (plugin.type === 'bundle')
+      return null
+    if(getValueFromI18nObject(plugin.label) !== 'Vllm')
       return null
 
     return <ProviderCard key={plugin.plugin_id} payload={plugin} />
